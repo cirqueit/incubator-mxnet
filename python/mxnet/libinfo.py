@@ -47,6 +47,7 @@ def find_lib_path(prefix='libmxnet'):
     api_path = os.path.join(curr_path, '../../lib/')
     cmake_build_path = os.path.join(curr_path, '../../build/')
     dll_path = [curr_path, api_path, cmake_build_path]
+    dll_path.append(os.path.join(curr_path, '../../../../mxnet'))
     if os.name == 'nt':
         dll_path.append(os.path.join(curr_path, '../../build'))
         vs_configuration = 'Release'

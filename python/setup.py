@@ -21,6 +21,14 @@ from __future__ import absolute_import
 import os
 import sys
 from setuptools import find_packages # This must precede distutils
+try:
+    from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
+    class bdist_wheel(_bdist_wheel):
+        def finalize_options(self):
+            _bdist_wheel.finalize_options(self)
+            self.root_is_pure = False 
+except ImportError:
+    bdist_wheel = None
 
 # need to use distutils.core for correct placement of cython dll
 kwargs = {}
@@ -45,6 +53,7 @@ libinfo = {'__file__': libinfo_py}
 exec(compile(open(libinfo_py, "rb").read(), libinfo_py, 'exec'), libinfo, libinfo)
 
 LIB_PATH = libinfo['find_lib_path']()
+print(LIB_PATH)
 __version__ = libinfo['__version__']
 
 sys.path.insert(0, CURRENT_DIR)
@@ -148,4 +157,5 @@ setup(name='mxnet',
           'Topic :: Software Development :: Libraries',
           'Topic :: Software Development :: Libraries :: Python Modules',
       ],
+      cmdclass={'bdist_wheel': bdist_wheel},
       **kwargs)
