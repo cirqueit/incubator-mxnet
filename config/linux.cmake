@@ -58,7 +58,7 @@ set(MXNET_CUDA_ARCH "Auto" CACHE STRING "Target NVIDIA GPU achitecture")
 #---------------------------------------------
 set(USE_BLAS "open" CACHE STRING "BLAS Vendor")
 
-set(USE_OPENCV ON CACHE BOOL "Build with OpenCV support")
+set(USE_OPENCV OFF CACHE BOOL "Build with OpenCV support")
 set(OPENCV_ROOT "" CACHE BOOL "OpenCV install path. Supports autodetection.")
 
 set(USE_OPENMP ON CACHE BOOL "Build with Openmp support")
@@ -86,8 +86,8 @@ set(USE_TVM_OP OFF CACHE BOOL "Enable use of TVM operator build system.")
 #---------------------------------------------
 # CPU instruction sets: The support is autodetected if turned ON
 #---------------------------------------------
-set(USE_SSE ON CACHE BOOL "Build with x86 SSE instruction support")
-set(USE_F16C ON CACHE BOOL "Build with x86 F16C instruction support")
+set(USE_SSE OFF CACHE BOOL "Build with x86 SSE instruction support")
+set(USE_F16C OFF CACHE BOOL "Build with x86 F16C instruction support")
 
 
 #----------------------------
